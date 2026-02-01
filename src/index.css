@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bluevision Realtors Brand Colors */
+:root {
+  --primary: #0A3D62;
+  --primary-light: #1E5B8A;
+  --primary-dark: #072A44;
+  --accent: #F57C00;
+  --accent-light: #FFA726;
+  --accent-dark: #E65100;
+  --neutral: #E5E7EB;
+  --neutral-light: #F9FAFB;
+  --neutral-dark: #9CA3AF;
+  --white: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+
+  /* FIXED: Use the actual font families from tailwind.config.js */
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    @apply font-bold text-primary;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary hover:bg-primary text-primary hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-primary to-primary-dark;
+  }
+}
+
+/* Brand-specific utilities */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+.text-brand-accent {
+  color: var(--accent);
+}
+
+.border-brand {
+  border-color: var(--primary);
+}
+
+.hover\:bg-brand-accent:hover {
+  background-color: var(--accent);
+}
+
+.hover\:text-brand-accent:hover {
+  color: var(--accent);
+}
+
+/* Animation for brand elements */
+@keyframes pulse-brand {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.pulse-brand {
+  animation: pulse-brand 2s infinite;
+}
+
+/* Custom utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
