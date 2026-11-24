@@ -1,26 +1,17 @@
 import React from 'react';
 import NewNavbar from '@/components/layout/NewNavbar';
 import Logo from '@/components/layout/Logo';
-import { 
-  Home,
+import {
   MessageCircle,
   Facebook,
-  Twitter, 
   Youtube,
-  TrendingUp, 
-  Shield, 
-  BarChart, 
   CheckCircle,
-  DollarSign,
   FileText,
   Users,
   Clock,
   ArrowRight,
-  Search,
-  Target,
   Award,
   Phone,
-  Calendar,
   ChevronRight,
   Star,
   Globe,
@@ -31,8 +22,7 @@ import {
   Building2,
   Compass,
   Home as HomeIcon,
-  Mail,
-  Map
+  Mail
 } from 'lucide-react';
 
 const ServicesPage = () => {

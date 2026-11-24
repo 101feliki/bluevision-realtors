@@ -4,8 +4,8 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: npm run preview
+    startCommand: node server.js
     envVars:
       - key: NODE_VERSION
-        value: 18.17.0
+        value: 20.18.0
     autoDeploy: true

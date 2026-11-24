@@ -1,30 +1,47 @@
-import { apiClient } from '../client';
-import { 
-  Property, 
-  PropertyFilters, 
+
+import {
+  Property,
+  PropertyFilters,
   PaginatedResponse,
   CreatePropertyDTO,
-  UpdatePropertyDTO 
+  UpdatePropertyDTO
 } from '@/types/property';
+import { mockProperties } from '../mockData';
 
+// Applies listing filters to a list of properties.
+function applyFilters(list: Property[], filters: PropertyFilters = {}): Property[] {
+  return list.filter((p) =>
+    (!filters.type || p.type === filters.type) &&
+    (!filters.status || p.status === filters.status) &&
+    (filters.minPrice == null || p.price >= filters.minPrice) &&
+    (filters.maxPrice == null || p.price <= filters.maxPrice) &&
+    (filters.bedrooms == null || p.bedrooms >= filters.bedrooms) &&
+    (filters.bathrooms == null || p.bathrooms >= filters.bathrooms) &&
+    (!filters.city || p.location.city.toLowerCase() === filters.city.toLowerCase()) &&
+    (filters.isFeatured == null || Boolean(p.isFeatured) === filters.isFeatured)
+  );
+}
+
+// Uses local mock data until a backend API is connected.
 class PropertyService {
-  private readonly basePath = '/properties';
-
-  async getAll(filters?: PropertyFilters): Promise<PaginatedResponse<Property>> {
-    // Return empty data for now - fix this later
+  async getAll(filters: PropertyFilters = {}): Promise<PaginatedResponse<Property>> {
+    const page = Math.max(1, filters.page ?? 1);
+    const limit = Math.max(1, filters.limit ?? 12);
+    const matches = applyFilters(mockProperties, filters);
     return {
-      data: [],
+      data: matches.slice((page - 1) * limit, page * limit),
       pagination: {
-        page: 1,
-        limit: 12,
-        total: 0,
-        totalPages: 0
-      }
+        page,
+        limit,
+        total: matches.length,
+        totalPages: Math.ceil(matches.length / limit),
+      },
     };
   }
 
   async getById(id: string): Promise<Property> {
-    // Return mock data
+    const found = mockProperties.find((p) => p.id === id);
+    if (found) return found;
     return {
       id,
       title: 'Sample Property',
@@ -66,15 +83,20 @@ class PropertyService {
   }
 
   async getSimilar(id: string, limit: number = 4): Promise<Property[]> {
-    return [];
+    const current = mockProperties.find((p) => p.id === id);
+    if (!current) return [];
+    return mockProperties.filter((p) => p.id !== id && p.type === current.type).slice(0, limit);
   }
 
   async getFeatured(): Promise<Property[]> {
-    return [];
+    return mockProperties.filter((p) => p.isFeatured);
   }
 
   async search(query: string, filters?: PropertyFilters): Promise<Property[]> {
-    return [];
+    const q = query.trim().toLowerCase();
+    return applyFilters(mockProperties, filters).filter((p) =>
+      [p.title, p.description, p.location.city, p.location.address].some((v) => v?.toLowerCase().includes(q))
+    );
   }
 }
 

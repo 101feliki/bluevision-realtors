@@ -6,13 +6,13 @@ import logoImage from '@/assets/images/logo.svg'; // or './logo.svg'
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Kept for callers that still pass it; the logo image has a single colour scheme. */
   variant?: 'dark' | 'light';
   showSubtitle?: boolean;
 }
 
 const Logo: React.FC<LogoProps> = ({ 
-  size = 'md', 
-  variant = 'dark',
+  size = 'md',
   showSubtitle = false // Set to false if subtitle is already in SVG
 }) => {
   const sizeClasses = {

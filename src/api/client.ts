@@ -41,7 +41,7 @@ apiClient.interceptors.response.use(
 );
 
 // Generic request function
-export const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
+export const request = async <T = unknown>(config: AxiosRequestConfig): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await apiClient.request<T>(config);
     return response.data;
@@ -57,19 +57,19 @@ export { apiClient };
 
 // Helper functions for common HTTP methods
 export const api = {
-  get: <T = any>(url: string, config?: AxiosRequestConfig): Promise<T> => 
+  get: <T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> => 
     request<T>({ ...config, method: 'GET', url }),
 
-  post: <T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => 
+  post: <T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> => 
     request<T>({ ...config, method: 'POST', url, data }),
 
-  put: <T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => 
+  put: <T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> => 
     request<T>({ ...config, method: 'PUT', url, data }),
 
-  patch: <T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => 
+  patch: <T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> => 
     request<T>({ ...config, method: 'PATCH', url, data }),
 
-  delete: <T = any>(url: string, config?: AxiosRequestConfig): Promise<T> => 
+  delete: <T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> => 
     request<T>({ ...config, method: 'DELETE', url }),
 };
 

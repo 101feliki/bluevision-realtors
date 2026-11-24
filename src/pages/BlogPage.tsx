@@ -1,10 +1,9 @@
 import React from 'react';
 import NewNavbar from '@/components/layout/NewNavbar';
-import { 
-  Calendar, 
-  User, 
-  Clock, 
-  Tag, 
+import {
+  Calendar,
+  User,
+  Clock,
   ArrowRight,
   Search,
   TrendingUp,

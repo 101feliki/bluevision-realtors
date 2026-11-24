@@ -1,11 +1,27 @@
 import React from 'react';
 import NewNavbar from '@/components/layout/NewNavbar';
 import Logo from '@/components/layout/Logo';
-import { 
-  Home, Shield, TrendingUp, Users, Star, Award, CheckCircle,
-  ArrowRight, MapPin, Mail, Phone, Target, Clock, Building2, Youtube,
-  Heart, ChevronRight, Facebook, Twitter, MessageCircle, 
-  Globe, Map, LandPlot, ShieldCheck, FileSearch, Compass, Check
+import {
+  Users,
+  Star,
+  CheckCircle,
+  ArrowRight,
+  MapPin,
+  Mail,
+  Phone,
+  Clock,
+  Building2,
+  Youtube,
+  Heart,
+  ChevronRight,
+  Facebook,
+  MessageCircle,
+  Globe,
+  LandPlot,
+  ShieldCheck,
+  FileSearch,
+  Compass,
+  Check
 } from 'lucide-react';
 
 const HomePage = () => {

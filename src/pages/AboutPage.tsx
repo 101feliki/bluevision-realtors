@@ -1,19 +1,14 @@
 import React from 'react';
 import NewNavbar from '@/components/layout/NewNavbar';
-import { 
-  Users, 
-  Target, 
-  Heart, 
-  Shield,
+import {
+  Users,
+  Target,
   Clock,
-  Award,
-  ArrowRight,
   CheckCircle,
   Globe,
   ShieldCheck,
   MapPin,
   LandPlot,
-  FileSearch,
   Building2,
   Compass,
   Target as TargetIcon

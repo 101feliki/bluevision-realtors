@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 import Logo from '@/components/layout/Logo';
 import NewNavbar from '@/components/layout/NewNavbar';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  Send, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Send,
   CheckCircle,
-  MessageSquare,
-  Calendar,
   Headphones,
-  Music2Icon,
   Facebook,
   MessageCircle,
-  Twitter,
   Star,
   ChevronRight,
   LandPlot,
   Youtube
 } from 'lucide-react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -40,12 +36,12 @@ const ContactPage = () => {
     setIsLoading(true);
     setError('');
 
-    const serviceID = 'service_ffg1tpr';
-    const templateID = 'template_uyudjgi';
-    const userID = 'El77e_qsXi51y6bwm';
+    // EmailJS keys are public by design; they can be overridden per environment.
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_ffg1tpr';
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_uyudjgi';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'El77e_qsXi51y6bwm';
 
     try {
-      emailjs.init(userID);
       await emailjs.send(serviceID, templateID, {
         name: formData.name,
         email: formData.email,
@@ -55,9 +51,8 @@ const ContactPage = () => {
         date: new Date().toLocaleString(),
         id: Math.floor(1000 + Math.random() * 9000),
         preferred_contact: formData.preferredContact,
-      });
+      }, { publicKey });
 
-      console.log('Email sent successfully!');
       setIsSubmitted(true);
       
       // Auto-reset after 5 seconds
