@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 export function forceFavicon() {
   if (typeof window === 'undefined') return;
   
-  console.log('🔄 Force fixing favicon...');
+  console.log('Force fixing favicon...');
   
   // 1. Remove ALL icon links
   document.querySelectorAll('link[rel*="icon"]').forEach(el => {
@@ -20,10 +20,10 @@ export function forceFavicon() {
   
   // 3. Add to head
   document.head.appendChild(favicon);
-  console.log('✅ BlueVision favicon forced');
+  console.log('BlueVision favicon forced');
   
   // 4. Change title to confirm
-  document.title = 'BlueVision ✅';
+  document.title = 'BlueVision';
   
   return favicon;
 }
